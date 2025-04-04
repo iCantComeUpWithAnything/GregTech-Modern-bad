@@ -35,11 +35,14 @@ public interface OverclockingLogic {
 
     int COIL_EUT_DISCOUNT_TEMPERATURE = 900;
 
-    OverclockingLogic PERFECT_OVERCLOCK = create(PERFECT_DURATION_FACTOR, STD_VOLTAGE_FACTOR, false);
-    OverclockingLogic NON_PERFECT_OVERCLOCK = create(STD_DURATION_FACTOR, STD_VOLTAGE_FACTOR, false);
+    OverclockingLogic PERFECT_OVERCLOCK = create(PERFECT_DURATION_FACTOR, STD_VOLTAGE_FACTOR, false, 0);
+    OverclockingLogic NON_PERFECT_OVERCLOCK = create(STD_DURATION_FACTOR, STD_VOLTAGE_FACTOR, false, 0);
 
-    OverclockingLogic PERFECT_OVERCLOCK_SUBTICK = create(PERFECT_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true);
-    OverclockingLogic NON_PERFECT_OVERCLOCK_SUBTICK = create(STD_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true);
+    OverclockingLogic PERFECT_OVERCLOCK_SUBTICK = create(PERFECT_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true, 0);
+    OverclockingLogic NON_PERFECT_OVERCLOCK_SUBTICK = create(STD_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true, 0);
+
+    OverclockingLogic PERFECT_VOLTAGE_OVERCLOCK = create(PERFECT_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true, 4);
+    OverclockingLogic NON_PERFECT_VOLTAGE_OVERCLOCK = create(STD_DURATION_FACTOR, STD_VOLTAGE_FACTOR, true, 4);
 
     /**
      * Create a standard OverclockingLogic using either {@link #standardOC} or {@link #subTickParallelOC}
@@ -49,9 +52,15 @@ public interface OverclockingLogic {
      * @param subtick        whether the OverclockingLogic should apply subtick parallels or not
      * @return A new OverclockingLogic with the given parameters
      */
-    static OverclockingLogic create(double durationFactor, double voltageFactor, boolean subtick) {
-        if (subtick) return (params, maxV) -> subTickParallelOC(params, maxV, durationFactor, voltageFactor);
-        else return (params, maxV) -> standardOC(params, maxV, durationFactor, voltageFactor);
+    static OverclockingLogic create(double durationFactor, double voltageFactor, boolean subtick, int voltageOC) {
+        if (voltageOC == 0) {
+            if (subtick) return (params, maxV) -> subTickParallelOC(params, maxV, durationFactor, voltageFactor);
+            else return (params, maxV) -> standardOC(params, maxV, durationFactor, voltageFactor);
+        } else {
+            if (subtick) return (params, maxV) -> subTickVoltageParallelOC(params, maxV, durationFactor, voltageFactor,
+                    voltageOC);
+            else return (params, maxV) -> standardOC(params, maxV, durationFactor, voltageFactor);
+        }
     }
 
     /**
@@ -235,6 +244,46 @@ public interface OverclockingLogic {
             eut = potentialEUt;
             ocLevel++;
         }
+
+        return new OCResult(Math.pow(voltageFactor, ocLevel), durationMultiplier, ocLevel, (int) parallel);
+    }
+
+    static OCResult subTickVoltageParallelOC(OCParams params, long maxVoltage, double durationFactor,
+                                             double voltageFactor, int parallelPerOC) {
+        double duration = params.duration;
+        double eut = params.eut;
+        int ocAmount = params.ocAmount;
+        int maxParallels = params.maxParallels;
+
+        double parallel = 1;
+        double voltageParallel = 0;
+        boolean shouldParallel = false;
+        int ocLevel = 0;
+        double durationMultiplier = 1;
+
+        while (ocAmount-- > 0) {
+
+            double potentialEUt = eut * voltageFactor;
+            if (potentialEUt > maxVoltage) break;
+
+            voltageParallel += parallelPerOC;
+
+            if (shouldParallel || duration * durationFactor < 1) {
+                double potentialParallel = parallel / durationFactor;
+                if (potentialParallel > maxParallels) break;
+                parallel = potentialParallel;
+                shouldParallel = true;
+            } else {
+                duration *= durationFactor;
+                durationMultiplier *= durationFactor;
+            }
+
+            eut = potentialEUt;
+            ocLevel++;
+
+        }
+
+        if (voltageParallel != 0) parallel *= voltageParallel;
 
         return new OCResult(Math.pow(voltageFactor, ocLevel), durationMultiplier, ocLevel, (int) parallel);
     }

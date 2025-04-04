@@ -64,7 +64,7 @@ public class FusionReactorMachine extends WorkableElectricMultiblockMachine impl
 
     // Standard OC used for Fusion
     public static final OverclockingLogic FUSION_OC = OverclockingLogic.create(PERFECT_HALF_DURATION_FACTOR,
-            PERFECT_HALF_VOLTAGE_FACTOR, false);
+            PERFECT_HALF_VOLTAGE_FACTOR, false, 0);
 
     // Max EU -> Tier map, used to find minimum tier needed for X EU to start
     private static final TreeMap<Long, Integer> FUSION_ENERGY = new TreeMap<>();

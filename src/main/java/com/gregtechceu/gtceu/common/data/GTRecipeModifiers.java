@@ -52,6 +52,9 @@ public class GTRecipeModifiers {
     public static final RecipeModifier OC_NON_PERFECT = ELECTRIC_OVERCLOCK.apply(NON_PERFECT_OVERCLOCK);
     public static final RecipeModifier OC_PERFECT_SUBTICK = ELECTRIC_OVERCLOCK.apply(PERFECT_OVERCLOCK_SUBTICK);
     public static final RecipeModifier OC_NON_PERFECT_SUBTICK = ELECTRIC_OVERCLOCK.apply(NON_PERFECT_OVERCLOCK_SUBTICK);
+    public static final RecipeModifier OC_PERFECT_VOLTAGE_SUBTICK = ELECTRIC_OVERCLOCK.apply(PERFECT_VOLTAGE_OVERCLOCK);
+    public static final RecipeModifier OC_NON_PERFECT_VOLTAGE_SUBTICK = ELECTRIC_OVERCLOCK
+            .apply(NON_PERFECT_VOLTAGE_OVERCLOCK);
 
     public static final BiFunction<MedicalCondition, Integer, RecipeModifier> ENVIRONMENT_REQUIREMENT = Util
             .memoize((condition, maxAllowedStrength) -> (machine, recipe) -> {
