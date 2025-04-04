@@ -50,19 +50,19 @@ public class PolymerRecipes {
                 .outputFluids(Polyethylene.getFluid(216))
                 .duration(160).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyethylene_from_tetrachloride_air")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyethylene_from_trichloride_air")
                 .circuitMeta(3)
                 .inputFluids(Air.getFluid(7500))
                 .inputFluids(Ethylene.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(Polyethylene.getFluid(3240))
                 .duration(800).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyethylene_from_tetrachloride_oxygen")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyethylene_from_trichloride_oxygen")
                 .circuitMeta(3)
                 .inputFluids(Oxygen.getFluid(7500))
                 .inputFluids(Ethylene.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(Polyethylene.getFluid(4320))
                 .duration(800).EUt(VA[LV]).save(provider);
     }
@@ -106,19 +106,19 @@ public class PolymerRecipes {
                 .outputFluids(PolyvinylChloride.getFluid(216))
                 .duration(160).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyvinyl_chloride_from_tetrachloride_air")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyvinyl_chloride_from_trichloride_air")
                 .circuitMeta(2)
                 .inputFluids(Air.getFluid(7500))
                 .inputFluids(VinylChloride.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(PolyvinylChloride.getFluid(3240))
                 .duration(800).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyvinyl_chloride_from_tetrachloride_oxygen")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("polyvinyl_chloride_from_trichloride_oxygen")
                 .circuitMeta(2)
                 .inputFluids(Oxygen.getFluid(7500))
                 .inputFluids(VinylChloride.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(PolyvinylChloride.getFluid(4320))
                 .duration(800).EUt(VA[LV]).save(provider);
     }
@@ -162,19 +162,19 @@ public class PolymerRecipes {
                 .outputFluids(Polytetrafluoroethylene.getFluid(216))
                 .duration(160).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("ptfe_from_tetrachloride_air")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("ptfe_from_trichloride_air")
                 .circuitMeta(2)
                 .inputFluids(Air.getFluid(7500))
                 .inputFluids(Tetrafluoroethylene.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(Polytetrafluoroethylene.getFluid(3240))
                 .duration(800).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder("ptfe_from_tetrachloride_oxygen")
+        LARGE_CHEMICAL_RECIPES.recipeBuilder("ptfe_from_trichloride_oxygen")
                 .circuitMeta(2)
                 .inputFluids(Oxygen.getFluid(7500))
                 .inputFluids(Tetrafluoroethylene.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(Polytetrafluoroethylene.getFluid(4320))
                 .duration(800).EUt(VA[LV]).save(provider);
     }

@@ -92,6 +92,13 @@ public class ReactorRecipes {
                 .outputFluids(TitaniumTetrachloride.getFluid(1000))
                 .duration(400).EUt(VA[HV]).save(provider);
 
+        CHEMICAL_RECIPES.recipeBuilder("titanium_trichloride")
+                .inputFluids(Hydrogen.getFluid(2000))
+                .inputFluids(TitaniumTetrachloride.getFluid(2000))
+                .outputFluids(HydrochloricAcid.getFluid(2000))
+                .outputFluids(TitaniumTrichloride.getFluid(2000))
+                .duration(400).EUt(VA[EV]).save(provider);
+
         CHEMICAL_RECIPES.recipeBuilder("polydimethylsiloxane_from_dimethyldichlorosilane")
                 .inputFluids(Dimethyldichlorosilane.getFluid(1000))
                 .inputFluids(Water.getFluid(1000))
@@ -230,19 +237,19 @@ public class ReactorRecipes {
                 .outputFluids(PolyvinylAcetate.getFluid(216))
                 .duration(160).EUt(VA[LV]).save(provider);
 
-        CHEMICAL_RECIPES.recipeBuilder("pva_from_tetrachloride_air")
+        CHEMICAL_RECIPES.recipeBuilder("pva_from_trichloride_air")
                 .circuitMeta(2)
                 .inputFluids(Air.getFluid(7500))
                 .inputFluids(VinylAcetate.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(PolyvinylAcetate.getFluid(3240))
                 .duration(800).EUt(VA[LV]).save(provider);
 
-        CHEMICAL_RECIPES.recipeBuilder("pva_from_tetrachloride_oxygen")
+        CHEMICAL_RECIPES.recipeBuilder("pva_from_trichloride_oxygen")
                 .circuitMeta(2)
                 .inputFluids(Oxygen.getFluid(7500))
                 .inputFluids(VinylAcetate.getFluid(2160))
-                .inputFluids(TitaniumTetrachloride.getFluid(100))
+                .inputFluids(TitaniumTrichloride.getFluid(100))
                 .outputFluids(PolyvinylAcetate.getFluid(4320))
                 .duration(800).EUt(VA[LV]).save(provider);
 

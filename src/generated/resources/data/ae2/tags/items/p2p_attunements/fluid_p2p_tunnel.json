@@ -429,6 +429,7 @@
     "gtceu:titanium_tungsten_carbide_bucket",
     "gtceu:molten_titanium_tungsten_carbide_bucket",
     "gtceu:hastelloy_c_276_bucket",
-    "gtceu:molten_hastelloy_c_276_bucket"
+    "gtceu:molten_hastelloy_c_276_bucket",
+    "gtceu:titanium_trichloride_bucket"
   ]
 }

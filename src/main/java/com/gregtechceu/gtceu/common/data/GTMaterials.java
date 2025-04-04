@@ -62,6 +62,9 @@ public class GTMaterials {
         // Gregicality Multiblocks
         GCYMMaterials.register();
 
+        // Additional Unofficial Materials
+        GTMUMaterials.register();
+
         /*
          * Register info for cyclical references
          */
@@ -992,4 +995,10 @@ public class GTMaterials {
     public static Material TitaniumCarbide;
     public static Material TitaniumTungstenCarbide;
     public static Material HastelloyC276;
+
+    /**
+     * GTMU Materials
+     */
+
+    public static Material TitaniumTrichloride;
 }
