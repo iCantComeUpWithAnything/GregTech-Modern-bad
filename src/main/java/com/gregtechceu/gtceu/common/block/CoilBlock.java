@@ -54,6 +54,9 @@ public class CoilBlock extends ActiveBlock {
                     coilTier == 0 ? 75 : 50 * (coilTier + 1)));
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_cracking"));
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_cracking", 100 - 10 * coilTier));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_lcr"));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_lcr",
+                    coilTier <= 3 ? 100 : 100 - 5 * (coilTier - 3)));
         } else {
             tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_extended_info"));
         }

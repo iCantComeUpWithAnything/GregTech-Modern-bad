@@ -252,4 +252,23 @@ public class GTRecipeModifiers {
 
         return baseModifier.andThen(ocModifier).andThen(parallelModifier);
     }
+
+    public static @NotNull ModifierFunction LCRCoilOverclock(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+        if (!(machine instanceof CoilWorkableElectricMultiblockMachine coilMachine)) {
+            return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
+        }
+        if (RecipeHelper.getRecipeEUtTier(recipe) > coilMachine.getTier()) return ModifierFunction.NULL;
+
+        var oc = OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK.getModifier(machine, recipe,
+                coilMachine.getOverclockVoltage());
+
+        int tier = coilMachine.getCoilTier();
+        if (coilMachine.getCoilTier() > 0) {
+            var coilModifier = ModifierFunction.builder()
+                    .eutMultiplier((tier <= 3) ? 1.0 : 1.0 - (tier - 3) * 0.05)
+                    .build();
+            oc = oc.andThen(coilModifier);
+        }
+        return oc;
+    }
 }
